@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500px"
+    android:layout_height="55px"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <TextView
+        android:id="@+id/tex_count"
+        android:layout_width="30px"
+        android:layout_height="50px"
+        android:layout_marginLeft="10px"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="25px"
+        android:singleLine="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tex_title"
+        android:layout_width="120px"
+        android:layout_height="50px"
+        android:gravity="center"
+        android:layout_marginLeft="4px"
+        android:textSize="25px"
+        android:textColor="@color/white"
+        android:singleLine="true"
+        app:layout_constraintLeft_toRightOf="@+id/tex_count"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tex_titletil"-->
+        <!--android:layout_width="120px"-->
+        <!--android:layout_height="50px"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="25px"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="歌曲"-->
+        <!--android:singleLine="true"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/tex_count"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--/>-->
+
+
+
+    <TextView
+        android:id="@+id/tex_singer"
+        android:layout_width="80px"
+        android:layout_marginLeft="50px"
+        android:layout_height="50px"
+        android:textColor="@color/white"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textSize="25px"
+        app:layout_constraintLeft_toRightOf="@+id/tex_title"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tex_singertil"-->
+        <!--android:layout_width="80px"-->
+        <!--android:layout_marginLeft="50px"-->
+        <!--android:layout_height="50px"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:singleLine="true"-->
+        <!--android:gravity="center"-->
+        <!--android:text="歌手"-->
+
+        <!--android:textSize="25px"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/tex_title"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--/>-->
+    <TextView
+        android:id="@+id/tex_songtime"
+        android:layout_width="90px"
+        android:layout_height="50px"
+        android:layout_marginLeft="30px"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:singleLine="true"
+        android:textSize="25px"
+        app:layout_constraintLeft_toRightOf="@+id/tex_singer"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tex_songtimetil"-->
+        <!--android:layout_width="90px"-->
+        <!--android:layout_height="50px"-->
+        <!--android:layout_marginLeft="30px"-->
+        <!--android:gravity="center"-->
+        <!--android:text="时长"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:singleLine="true"-->
+        <!--android:textSize="25px"-->
+        <!--app:layout_constraintLeft_toRightOf="@+id/tex_singer"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--/>-->
+
+    <ImageView
+        android:id="@+id/img_play"
+        android:layout_width="45px"
+        android:layout_height="45px"
+        android:layout_marginRight="10px"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:background="@drawable/music_play_stop"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

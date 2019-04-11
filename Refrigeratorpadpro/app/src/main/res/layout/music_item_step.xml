@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240px"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="30px"
+    android:layout_marginTop="30px">
+    <ImageView
+        android:id="@+id/img_title"
+        android:layout_width="240px"
+        android:layout_height="280px"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <!--<TextView-->
+        <!--android:id="@+id/tex_title"-->
+        <!--android:layout_width="240px"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="28px"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/unclick_color"-->
+        <!--android:layout_gravity="bottom|center_horizontal"-->
+      <!--/>-->
+    <TextView
+        android:id="@+id/tex_title"
+        android:layout_width="240px"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:paddingLeft="25px"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textSize="26px"
+        android:background="@drawable/menu_pic_collection_bar"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_title"/>
+
+</android.support.constraint.ConstraintLayout>

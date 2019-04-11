@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+    android:id="@+id/img_pic"
+    android:layout_width="500px"
+    android:layout_height="607px"
+    android:layout_marginTop="38px"
+    android:layout_marginLeft="40px"
+    android:text="Hello World!"
+    android:scaleType="fitXY"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tex_title"
+
+        android:textSize="40px"
+        android:textColor="@color/unclick_color"
+        android:layout_width="475px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25px"
+        android:singleLine="true"
+        app:layout_constraintLeft_toRightOf="@+id/img_pic"
+        app:layout_constraintTop_toTopOf="@+id/img_pic"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/tex_des"
+        android:layout_width="475px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="185px"
+        android:textSize="25px"
+        android:layout_marginLeft="25px"
+        android:lines="8"
+        android:ellipsize="end"
+        android:textColor="@color/unclick_color"
+        app:layout_constraintLeft_toRightOf="@+id/img_pic"
+        app:layout_constraintTop_toTopOf="@+id/img_pic"
+        />
+    <!--<TextView-->
+        <!--android:id="@+id/tex_chose"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="选集"-->
+        <!--android:textSize="40px"-->
+        <!--android:layout_marginTop="30px"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tex_des"-->
+        <!--/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv1"
+        android:layout_width="1000px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="25px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_pic"
+        />
+
+    <ImageView
+        android:id="@+id/detail_back"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="40px"
+        android:onClick="DetailOnClick"
+        android:src="@drawable/navigation_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <!--<WebView-->
+        <!--android:id="@+id/webview"-->
+        <!--android:layout_width="400px"-->
+        <!--android:layout_height="200px"-->
+        <!--android:layout_marginTop="8px"-->
+        <!--android:visibility="gone"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+      <!--/>-->
+</android.support.constraint.ConstraintLayout>

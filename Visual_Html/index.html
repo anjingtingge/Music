@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>QQ音乐</title>
+<meta charset="utf-8">
+
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style type="text/css">
+*{margin:0;padding:0;}
+/* body,html,div,ul{ margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:transparent;} */
+/* ul,ol{list-style:none;} */
+/* body,button,input,select,textarea,li{Tahoma,Geneva,"Microsoft Yahei";color:#333;} */
+.item-box {width: 1080px;height: 1920px;background: #232636;/*默认是从上到下的渐变*/}
+.div_title{margin:0 auto;width:800px;}
+/* .h_title{margin-top: 80px} */
+#h_title,#h_singer{color:#fff;text-align:center;height: 60px;}
+#h_title{padding-top:100px;font-size:42px }
+#h_singer{padding-top:40px;font-size:32px }
+.js_result{margin-top: 80px;margin-left: 140px;width:800px;}
+#song_progress{height:20px;width:800px;}
+
+#songimg{height:800px;width:800px;border-radius: 400px; 
+    
+    animation:run 40s infinite;
+    -webkit-animation:run 40s infinite;
+       /* -webkit-animation:run 40s ; */
+       animation-play-state:paused;
+        -webkit-animation-play-state:paused;
+        }
+
+    @-webkit-keyframes run{  
+        from{  -webkit-transform:rotate(0deg);  }  
+        to{ -webkit-transform:rotate(360deg);  }  
+    }
+
+.action-list{margin:0 auto;width:800px;padding-top: 190px}
+#img_before{margin-left: 150px}
+#img_play{margin-left: 150px}
+#img_next{margin-left: 150px}
+
+</style>
+</head>
+<body>
+<!-- <h2>QQ音乐</h2> -->
+<div class="item-box">
+    <div class="h_title">
+        <h3 id=h_title></h3>
+    </div>
+    <h4 id="h_singer"></h4>
+    <div class="div_title">
+        <img id="songimg" src="img/hali.png"/>
+    </div>
+    <div class="js_result">
+        <meter value="0" min="0" low="200" high="200" max="300" optimum="200" id="song_progress"></meter>
+    </div>
+    <div class="action-list">
+        <img id="img_before" onclick="before()" src="img/before.png">
+        <img id="img_play" onclick="play()" src="img/play.png">
+        <img id="img_next" onclick="next()" src="img/next.png">
+        <button class="btn js_demo2" onclick="playloop()">列表播放</button>
+        <!-- <button class="btn js_demo3" onclick="stop()">暂停</button> -->
+    </div>
+</div>
+
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="//y.gtimg.cn/music/h5/player/player.js"></script>
+<script type="text/javascript">
+
+// 初始化播放组件
+var player = new QMplayer({ target: "web" }); // 设置 target=music 时会拉起QQ音乐客户端进行播放
+
+
+var songid = GetQueryString("songid");   
+var searchname = GetQueryString("searchname"); 
+var singger; 
+var songname;
+var songtime;
+var currenttime=0;
+// var somgimg ="https://y.gtimg.cn/music/photo_new/T002R300x300M0000024R1BJ2KIqzo.jpg?max_age=2592000"
+var somgimg;
+    
+setTimeout( function(){
+              
+
+              if(player.state=="error"){
+                  alertMessage("该歌曲不能播放")
+              }
+             
+                if(songid!=null){
+                    play();                             
+                // playloop();
+                  console.log("播放");
+                  document.getElementById('img_play').src = "img/stop.png";
+                  document.getElementById("songimg").style.WebkitAnimationPlayState ="running"; 
+                }
+               if(searchname!=null){
+                var url = 'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?aggr=1&cr=1&flag_qc=0&p=1&n=30&w='+searchname;
+                loadXMLDoc(url);
+
+               }
+
+
+
+
+                console.log(searchname);
+
+              }, 1000 );
+
+
+
+function play()
+        {
+            player.loop = false;
+            console.log(songid);
+            // 播放歌曲
+            player.play(songid);
+
+            songsdetail();
+            changeimg()
+               
+        }
+
+function changeimg(){
+
+    var aninstate =document.getElementById("songimg").style.WebkitAnimationPlayState;
+              console.log(aninstate);
+            //   document.getElementById("songimg").style.WebkitAnimationPlayState ="running"; 
+            if(aninstate=="paused"){
+                document.getElementById("songimg").style.WebkitAnimationPlayState ="running"; 
+                document.getElementById('img_play').src = "img/stop.png";
+            }
+            if(aninstate=="running"){
+                document.getElementById("songimg").style.WebkitAnimationPlayState="paused";
+                document.getElementById('img_play').src = "img/play.png";
+
+            }
+    
+}
+
+
+function ObtainSongTime()
+{
+    var str=JSON.stringify(player.data);   
+    var obj = JSON.parse(str);
+    currenttime = obj.currentTime;
+    document.getElementById("song_progress").value=currenttime;
+  
+}
+
+
+
+
+ function stop()
+        {
+
+            player.pause();
+            console.log(player.state);
+            document.getElementById("songimg").style.WebkitAnimationPlayState="paused";
+        }
+
+function before(){
+    document.getElementById("songimg").style.WebkitAnimationPlayState="paused";
+
+    player.playPrev();
+    songsdetail()
+    changeimg()
+}
+
+function next(){
+    document.getElementById("songimg").style.WebkitAnimationPlayState="paused";
+
+    player.playNext();
+    songsdetail()
+    changeimg()
+}
+
+function playloop(){
+
+     console.log("循环");
+    player.loop = true;
+        player.play([
+        "001OyHbk2MSIi4", 
+        "0043dDKn0PRCUY", 
+        "004EzHKM2jXY9i",
+        "003n4cDe10Vu38"
+        
+        ]);
+        changeimg()
+
+}
+
+function songsdetail(){
+
+    setTimeout( function(){
+              
+
+              if(player.state=="error"){
+                  alertMessage("该歌曲不能播放")
+              }
+              var str=JSON.stringify(player.data);
+              // console.log(player.currentTime);
+            //   console.log(str);
+             
+      
+              var obj = JSON.parse(str);
+              songname = obj.song.title;
+              singger = obj.song.singer[0].title;
+              songtime = obj.duration;
+              songimg = obj.song.album.mid
+              console.log(songimg);
+              document.getElementById("songimg").src = "https://y.gtimg.cn/music/photo_new/T002R300x300M000"+songimg+".jpg?max_age=2592000";
+              document.getElementById("song_progress").max=songtime;
+              console.log(obj.song.title);
+              // console.log(obj.currentTime);
+              // console.log(obj.duration);
+
+              console.log(singger);
+              document.getElementById("h_title").innerHTML=songname;
+              document.getElementById("h_singer").innerHTML=singger;
+             
+              var int = setInterval("ObtainSongTime()","1000");
+
+          }, 1800 );
+
+}
+
+// 监听事件
+player.on("play", function () { })
+
+
+function alertMessage(message) {
+                alert(message);
+            }
+
+ function GetQueryString(name)
+{
+  
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+	  var r = window.location.search.substr(1).match(reg); 
+	  if (r != null) return decodeURI(r[2]); return null;
+
+}
+
+function loadXMLDoc(url)
+        {
+
+        $.ajax({
+          url:url,
+          type:"get",
+          dataType:'jsonp',
+          jsonp: "jsonpCallback",
+          scriptCharset: 'GBK',//解决中文乱码
+          success: function(data){
+         
+            songdata = data;
+            // console.log(data.data.song.list.length);
+            songid = songdata.data.song.list[0].songmid; 
+
+            play();
+            document.getElementById('img_play').src = "img/stop.png";
+            document.getElementById("songimg").style.WebkitAnimationPlayState ="running"; 
+          },
+          error:function (e) {
+            console.log('error');
+          }
+        });
+
+        }
+        
+
+</script>
+</body>
+</html>

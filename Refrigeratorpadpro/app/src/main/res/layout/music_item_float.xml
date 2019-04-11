@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250px"
+    android:layout_height="100px"
+    android:background="@drawable/music_float_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/img_bg"
+        android:layout_width="70px"
+        android:layout_height="70px"
+        android:layout_marginLeft="15px"
+        android:layout_marginTop="15px"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imageButton_play"
+        android:layout_width="36px"
+        android:layout_height="36px"
+        android:layout_marginLeft="32px"
+        android:layout_marginTop="32px"
+        android:scaleType="fitXY"
+        android:src="@drawable/music_play_stop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/tex_songname"
+        android:layout_width="94px"
+        android:layout_height="wrap_content"
+        android:text="十年"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="19px"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="10px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="42px"
+        android:layout_height="42px"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="60px"
+
+        android:scaleType="fitXY"
+        android:src="@drawable/music_play_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <ImageView
+        android:id="@+id/img_next"
+        android:layout_width="42px"
+        android:layout_height="42px"
+       android:layout_marginLeft="10px"
+        android:src="@drawable/music_play_next"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toRightOf="@+id/img_back"
+        app:layout_constraintTop_toTopOf="@+id/img_back"
+        />
+<LinearLayout
+    android:layout_width="50px"
+    android:layout_height="100px"
+    android:background="@color/tex_color"
+    android:orientation="vertical"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    >
+
+
+</LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

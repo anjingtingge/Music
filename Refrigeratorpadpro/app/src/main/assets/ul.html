@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">-->
+    <!--<meta http-equiv="content-type" content="text/html;charset=gb2312">-->
+    <title></title>
+
+    <style type="text/css">
+        body,html,div,ul{ margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:transparent;}
+        */
+
+        #songname{position: absolute;width: 300px; left:40px;font-size: 20px}
+        #singer{position:absolute; left: 290px;font-size: 18px}
+        #albumname{position: absolute;left: 490px;font-size: 18px}
+        #li{height: 60px;line-height:60px;padding: 4px;background: cadetblue;margin-top: 10px;margin-bottom: 10px;}
+        #ahref{height: 60px;width: 1000px}
+        #songmid{display: none}
+        #li:active{ background:olive;}
+        em{color: brown}
+
+    </style>
+
+</head>
+
+<body>
+
+<ul class="task_main" id="ultask">
+    <li id="li" >
+        <div>
+            <span id="songname">歌曲</span>
+            <span id="singer">歌手</span>
+            <span id="albumname">专辑</span>
+            <span id="songmid">id</span>
+        </div>
+    </li>
+
+</ul>
+
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+       var ul = document.getElementById("ultask");
+       var searchname =JsInteration.back();
+
+
+
+       var size ;
+       var songdata;
+       loadXMLDoc();
+        function loadXMLDoc()
+        {
+        var url = 'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?aggr=1&cr=1&flag_qc=0&p=1&n=30&w='+searchname;
+           <!--var url = 'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?aggr=1&cr=1&flag_qc=0&p=1&n=30&w=菊花台';-->
+
+        $.ajax({
+          url:url,
+          type:"get",
+          dataType:'jsonp',
+          async: false,
+          jsonp: "jsonpCallback",
+          scriptCharset: 'GBK',//解决中文乱码
+          success: function(data){
+            //最新音乐数据
+            songdata = data;
+            console.log(data.data.song.list.length);
+            size = data.data.song.list.length;
+            if(size!=0){
+                for (var i = 0; i <= size-1; i++) {
+                var li = document.createElement("li");
+
+
+                li.setAttribute("onclick","Jumpto("+i+")");
+
+                var a = document.createElement("a");
+                var div = document.createElement("div");
+                // var h2 = document.createElement("spa")
+                li.setAttribute("id","li");
+                a.setAttribute("id",i);
+
+                // h2.innerHTML = songdata.data.song.list[i].songname;
+
+                var span1 = document.createElement("span");
+                var span2 = document.createElement("span");
+                var span3 = document.createElement("span");
+                var span4 = document.createElement("span");
+                span1.setAttribute("id","songname");
+                span2.setAttribute("id","singer");
+                span3.setAttribute("id","albumname");
+                span4.setAttribute("id","songmid");
+
+
+
+
+                ul.appendChild(li);
+                li.appendChild(div);
+                li.appendChild(a);
+                // a.appendChild(div);
+                div.appendChild(span1);
+                // div.appendChild(span1);
+                div.appendChild(span2);
+                div.appendChild(span3);
+                div.appendChild(span4);
+                span1.innerHTML = songdata.data.song.list[i].songname_hilight;
+                span2.innerHTML = songdata.data.song.list[i].singer[0].name;
+                span3.innerHTML = songdata.data.song.list[i].albumname_hilight;
+                span4.innerHTML = songdata.data.song.list[i].songmid;
+                var songid = songdata.data.song.list[i].songmid;
+                a.setAttribute("href",'http://192.168.1.106:8080/?songid='+songid);
+                console.log(songdata.data.song.list[i].singer[0].name);
+                console.log(i);
+
+
+              }
+           }
+          },
+          error:function (e) {
+            console.log('error');
+          }
+        });
+
+
+
+
+        }
+
+        function Jumpto(i)
+        {
+
+          javascript:document.getElementById(i).click();
+        //  console.log($(this).index());
+        //  $('ul').find('li').on('click', function(){
+            // console.log($("#li").find("span").eq(3).text());
+        // var songid = $(this).find("span").eq(3).text();
+        // window.location.href = 'http://192.168.1.106:8080/?songid='+songid;
+
+        // })
+
+        }
+
+
+
+ 
+
+
+</script>
+
+</body>
+</html>
